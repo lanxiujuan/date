@@ -7,7 +7,7 @@
 ----
 
 属性|类型|描述|默认
---|:--:|--:
+--|:--:|--:|--:
 timeType|String|'day' 选择日期  month 选择月份  year 选择年份 | day
 disabled|Boolean| true 禁止 false 可选| false
 placeholder|String|提示语 |请选择
