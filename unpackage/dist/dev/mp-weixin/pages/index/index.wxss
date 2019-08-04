@@ -1,0 +1,57 @@
+.content {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 24rpx;
+}
+.item {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  background-color: #ffffff;
+  position: relative;
+  padding: 0px 10px 0px 100px;
+  margin-bottom: 10px;
+  text-align: right;
+}
+.item .lable {
+  position: absolute;
+  left: 10px;
+  top: 0px;
+  color: #333333;
+}
+uni-picker-view-column {
+  font-size: 24rpx;
+}
+.filter_input {
+  height: 92rpx;
+  padding-top: 10rpx;
+}
+.date_item {
+  float: left;
+  width: 240rpx;
+  overflow: hidden;
+  display: inline-block;
+  text-align: center;
+  border: 1px solid #ececec;
+  height: 72rpx;
+  line-height: 72rpx;
+}
+.date_item input {
+  height: 72rpx;
+}
+.date_item input .uni-input-placeholder {
+  color: #b5b8c2;
+}
+.filter_inputline {
+  float: left;
+  margin: 0 4rpx;
+  line-height: 72rpx;
+}
+.filter_inputline:after {
+  content: '\2014';
+  font-size: 28rpx;
+  color: #848b9a;
+}
+

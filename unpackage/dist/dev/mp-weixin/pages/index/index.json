@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "日期选择组件",
+  "usingComponents": {
+    "dy-date-picker": "/components/lanxiujuan-dyDate/lanxiujuan-dyDate"
+  }
+}

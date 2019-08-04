@@ -1,0 +1,18 @@
+.tx_r {
+  line-height: 48px;
+  font-size: 15px;
+  font-weight: normal;
+  color: #848b9a;
+}
+.disabled {
+  color: #b5b8c2;
+}
+.placeholder {
+  color: #b5b8c2;
+  font-size: 30rpx;
+}
+.fa-angle-right {
+  font-size: 36rpx;
+  padding-left: 12rpx;
+}
+
