@@ -1,5 +1,7 @@
 #### 日期选择组件
 ----
+[GitHub地址](https://github.com/lanxiujuan/date)  <font size=4 color=#ff7406>demo请到GitHub下载</font>
+----
 ##### 功能
 1.支持开始时间及结束时间限制
 2.支持默认值设置
