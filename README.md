@@ -14,3 +14,9 @@ placeholder|String|提示语 |请选择
 childValue|String|组件值|无
 minSelect|String|最小可选日期|'1900/01/01' 日期格式必须是YY/MM/DD 不支持YY-MM-DD格式
 maxSelect|String|最大可选日期|'2050/12/31' 日期格式必须是YY/MM/DD 不支持YY-MM-DD格式
+
+姓名|技能|排行
+--|:--:|--:
+刘备|哭|大哥
+关羽|打|二哥
+张飞|骂|三弟
