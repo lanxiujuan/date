@@ -279,13 +279,14 @@ export default {
       const minIndex = e.detail.value
       const column = e.detail.column
       let type = this.timeType
+	   this.$set(this.index, column, minIndex)
       if (column === 0) {
         this.yearIndex = minIndex
         if (type === 'month' || type === 'day') {
           this.$set(this.array, 1, this.monthArr[minIndex])
         }
         if (type === 'day') {
-          let monthindex = this.index[2] || 0
+          let monthindex = this.index[1] || 0
           let newDateArr = this.getDateArr(
             parseInt(this.yearArr[minIndex]),
             parseInt(this.monthArr[this.yearIndex][monthindex])
