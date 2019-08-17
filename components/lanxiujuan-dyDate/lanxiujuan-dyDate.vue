@@ -213,8 +213,8 @@ export default {
 
       if (
         (y !== yearEnd && y !== yearStar) ||
-        (y === yearStar && m !== monthStar) ||
-        (y === yearEnd && m !== monthEnd) ||
+        (y === yearStar && m !== monthStar&& m !== monthEnd) ||
+        (y === yearEnd && m !== monthEnd&&m !== monthStar ) ||
         (yearEnd === yearEnd && m !== monthStar && m !== monthEnd)
       ) {
         for (let d = 1; d <= maxnum; d++) {

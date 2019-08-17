@@ -1,0 +1,23 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*每个页面公共css */
+page,page{
+	background-color: #EFEFEF;
+}
+uni-picker-view .uni-picker-view-wrapper{
+	font-size: 28rpx;
+}
+
