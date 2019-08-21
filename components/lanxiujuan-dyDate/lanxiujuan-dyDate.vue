@@ -109,8 +109,10 @@ export default {
       this.array = []
       this.yearArr = []
       this.monthArr = []
-      let minDate = this.minSelect ? this.minSelect.split(' ') : ''
-      let maxDate = this.maxSelect ? this.maxSelect.split(' ') : ''
+	  let minDate = this.moment(this.minSelect) || []
+	  let maxDate = this.moment(this.maxSelect) || []
+      minDate = minDate ? minDate.split(' ') : ''
+      maxDate = maxDate ? maxDate.split(' ') : ''
       minDate = minDate[0] ? minDate[0].split('-') : 1900
       maxDate = maxDate[0] ? maxDate[0].split('-') : 2050
       let type = this.timeType
@@ -125,6 +127,7 @@ export default {
         monthStar = minDate[1] ? parseInt(minDate[1]) : 1
         monthEnd = maxDate[1] ? parseInt(maxDate[1]) : 12
       }
+	 
       for (let y = yearStar; y <= yearEnd; y++) {
         let ytext = y < 10 ? `0${y}` : y
         this.yearArr.push(`${ytext}年`)
@@ -164,10 +167,12 @@ export default {
       }
 
       if (y === yearEnd && y !== yearStar) {
+		
         for (let m = 1; m <= monthEnd; m++) {
           let mtext = m < 10 ? `0${m}` : m
           mGroup.push(`${mtext}月`)
         }
+		
       }
 
       if (y !== yearStar && y !== yearEnd) {
@@ -213,10 +218,12 @@ export default {
 
       if (
         (y !== yearEnd && y !== yearStar) ||
-        (y === yearStar && m !== monthStar&& m !== monthEnd) ||
-        (y === yearEnd && m !== monthEnd&&m !== monthStar ) ||
-        (yearEnd === yearEnd && m !== monthStar && m !== monthEnd)
+        (y === yearStar && m !== monthStar && m !== monthEnd) ||
+        (y === yearEnd && m !== monthEnd && m !== monthStar) ||
+        (yearStar === yearEnd && m !== monthStar && m !== monthEnd)||
+		(yearStar !== yearEnd&&y === yearEnd  && m !== monthEnd)
       ) {
+		 
         for (let d = 1; d <= maxnum; d++) {
           let dtext = d < 10 ? `0${d}` : d
           datearr.push(`${dtext}日`)
@@ -224,12 +231,15 @@ export default {
       }
 
       if (y === yearStar && m === monthStar && m !== monthEnd) {
+		   
         for (let d = dateStar; d <= maxnum; d++) {
           let dtext = d < 10 ? `0${d}` : d
           datearr.push(`${dtext}日`)
         }
       }
+	
       if (y === yearEnd && m === monthEnd && m !== monthStar) {
+		  
         for (let d = 1; d <= dateEnd; d++) {
           let dtext = d < 10 ? `0${d}` : d
           datearr.push(`${dtext}日`)
@@ -241,12 +251,12 @@ export default {
         m === monthStar &&
         monthStar === monthEnd
       ) {
+		
         for (let d = dateStar; d <= dateEnd; d++) {
           let dtext = d < 10 ? `0${d}` : d
           datearr.push(`${dtext}日`)
         }
       }
-
       return datearr
     },
 
@@ -279,7 +289,8 @@ export default {
       const minIndex = e.detail.value
       const column = e.detail.column
       let type = this.timeType
-	   this.$set(this.index, column, minIndex)
+      this.$set(this.index, column, minIndex)
+
       if (column === 0) {
         this.yearIndex = minIndex
         if (type === 'month' || type === 'day') {
@@ -287,6 +298,7 @@ export default {
         }
         if (type === 'day') {
           let monthindex = this.index[1] || 0
+
           let newDateArr = this.getDateArr(
             parseInt(this.yearArr[minIndex]),
             parseInt(this.monthArr[this.yearIndex][monthindex])
@@ -306,6 +318,7 @@ export default {
       this.index = [0]
       if (this.childValue || defaultTime) {
         let value = this.childValue || defaultTime
+        value = this.moment(value)
         value = value.split('-')
         const index =
           this.array[0].findIndex(
@@ -313,11 +326,12 @@ export default {
           ) || 0
         this.index[0] = index
         this.yearIndex = index
+
         let type = this.timeType
         if (type === 'month' || type === 'day') {
-			this.array[1] = this.monthArr.length && this.monthArr[index]
+          this.array[1] = this.monthArr.length && this.monthArr[index]
           const monthindex =
-            (this.array[1].length &&
+            (this.array[1]&&this.array[1].length &&
               this.array[1].findIndex(
                 item => parseInt(item) === parseInt(value[1])
               )) ||
@@ -325,9 +339,12 @@ export default {
           this.index[1] = monthindex
         }
         if (type === 'day') {
+			let index0=this.index[0]||0
+			let index1=this.index[1]||0
+			
           let newDay = this.getDateArr(
-            parseInt(this.yearArr[this.index[0]]),
-            parseInt(this.monthArr[this.index[0]][this.index[1]])
+            parseInt(this.yearArr[index0]),
+            parseInt(this.monthArr[index0][index1])
           )
           this.getDateIndex(newDay)
         }
@@ -336,6 +353,7 @@ export default {
     getDateIndex(newDay) {
       let defaultTime = this.moment(new Date().getTime())
       let value = this.childValue || defaultTime
+      value = this.moment(value)
       value = value.split('-')
       this.array[2] = newDay
       let dateindex =
@@ -370,7 +388,6 @@ export default {
     if (!this.childValue) {
       this.setDefaultValue()
     }
-	console.log(this.array,'^^')
   }
 }
 </script>
@@ -382,9 +399,7 @@ export default {
   font-weight: normal;
   color: #848b9a;
 }
-.disabled{
-	color: #b5b8c2;
-}
+
 .placeholder {
   color: #b5b8c2;
   font-size: 30rpx;
